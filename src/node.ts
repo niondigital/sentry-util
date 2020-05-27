@@ -2,7 +2,6 @@
  * Sentry Connector for Node environments (non-Browser)
  */
 import * as Sentry from '@sentry/node';
-import packageJson from '@libraries/../../package.json';
 
 const emitErrors = !['false', '0', ''].includes(String(process.env.SENTRY_ENABLED).toLowerCase());
 const useSentryReleases = ['1', 'true'].includes(String(process.env.SENTRY_USE_RELEASES).toLowerCase());
@@ -16,7 +15,7 @@ const config: Sentry.NodeOptions = {
 	beforeSend
 };
 
-if (useSentryReleases) config.release = `${packageJson.name}@${packageJson.version}`;
+if (useSentryReleases) config.release = `${process.env.npm_package_name}@${process.env.npm_package_version}`;
 
 Sentry.init(config);
 
