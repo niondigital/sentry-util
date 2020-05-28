@@ -4,14 +4,14 @@
 import * as Sentry from '@sentry/browser';
 
 // emit events only if sentry is enabled for the current environment:
-const beforeSend = (error: Error): Error | null => (process.env.SENTRY_ENABLED ? error : null);
+const beforeSendDefault = (error: Error): Error | null => (process.env.SENTRY_ENABLED ? error : null);
 
-export function initSentry(release?: string): void {
+export function initSentry(environment: string, release?: string, beforeSend?: (error: Error) => Error | null): void {
 	Sentry.init({
 		dsn: process.env.SENTRY_DSN || '',
-		environment: process.env.SENTRY_ENVIRONMENT || '',
+		environment, // used to be process.env.SENTRY_ENVIRONMENT || ''
 		release,
-		beforeSend
+		beforeSend: beforeSend ? beforeSend : beforeSendDefault
 	});
 }
 export function captureAndLogError(error: Error): void {
