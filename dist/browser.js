@@ -4,14 +4,16 @@ exports.__esModule = true;
  * Sentry Connector for Browser based environments (non-Node)
  */
 var Sentry = require("@sentry/browser");
-// emit events only if sentry is enabled for the current environment:
-var beforeSend = function (error) { return (process.env.SENTRY_ENABLED ? error : null); };
-function initSentry(release) {
+function initSentry(environment, release, beforeSend) {
+    // emit events only if sentry is enabled for the current environment:
+    var beforeSendDefault = function (error) {
+        return !process.env.SENTRY_ENABLED || ['0', 'false', ''].includes(process.env.SENTRY_ENABLED.toLowerCase()) ? null : error;
+    };
     Sentry.init({
         dsn: process.env.SENTRY_DSN || '',
-        environment: process.env.SENTRY_ENVIRONMENT || '',
-        release: release,
-        beforeSend: beforeSend
+        environment: environment || process.env.SENTRY_ENVIRONMENT || '',
+        release: release || process.env.SENTRY_RELEASE,
+        beforeSend: beforeSend ? beforeSend : beforeSendDefault
     });
 }
 exports.initSentry = initSentry;
