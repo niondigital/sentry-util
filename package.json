@@ -1,7 +1,7 @@
 {
-	"name": "heyday-sentry-util",
-	"version": "1.0.1",
-	"private": true,
+	"name": "@madebyheyday/sentry-util",
+	"version": "1.0.2",
+	"private": false,
 	"scripts": {
 		"build": "rm dist/* && tsc -d --outDir dist/ src/*.ts"
 	},
@@ -29,6 +29,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:seibert-io/heyday-sentry.git"
+		"url": "git@github.com:madebyheyday/sentry-util.git"
 	}
 }
