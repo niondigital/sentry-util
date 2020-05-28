@@ -1,6 +1,6 @@
 {
-	"name": "heyday-sentry",
-	"version": "1.0.0",
+	"name": "heyday-sentry-util",
+	"version": "1.0.1",
 	"private": true,
 	"scripts": {
 		"build": "rm dist/* && tsc -d --outDir dist/ src/*.ts"
