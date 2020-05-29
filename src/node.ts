@@ -9,19 +9,19 @@ export function captureAndLogError(error: Error): void {
 	Sentry.captureException(error);
 }
 
-export function initSentry(config: IInitSentryConfig): void {
+export function initSentry(config?: IInitSentryConfig): void {
 	// emit events only if sentry is enabled for the current environment:
 	const beforeSendDefault = (error: Error): Error | null =>
 		!process.env.SENTRY_ENABLED || ['false', '0', ''].includes(process.env.SENTRY_ENABLED.toLowerCase()) ? null : error;
 
 	Sentry.init({
 		dsn: process.env.SENTRY_DSN || '',
-		environment: config.environment || process.env.SENTRY_ENVIRONMENT || '',
+		environment: config && config.environment ? config.environment : process.env.SENTRY_ENVIRONMENT || '',
 		release:
-			config.release ||
-			process.env.SENTRY_RELEASE ||
-			`${process.env.npm_package_name}@${process.env.npm_package_version}`,
-		beforeSend: config.beforeSend || beforeSendDefault
+			config && config.release
+				? config.release
+				: process.env.SENTRY_RELEASE || `${process.env.npm_package_name}@${process.env.npm_package_version}`,
+		beforeSend: config && config.beforeSend ? config.beforeSend : beforeSendDefault
 	});
 }
 
