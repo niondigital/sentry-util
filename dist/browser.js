@@ -17,9 +17,9 @@ function initSentry(config) {
     };
     Sentry.init({
         dsn: process.env.SENTRY_DSN || '',
-        environment: config.environment || process.env.SENTRY_ENVIRONMENT || '',
-        release: config.release || process.env.SENTRY_RELEASE,
-        beforeSend: config.beforeSend || beforeSendDefault
+        environment: config && config.environment ? config.environment : process.env.SENTRY_ENVIRONMENT || '',
+        release: config && config.release ? config.release : process.env.SENTRY_RELEASE,
+        beforeSend: config && config.beforeSend ? config.beforeSend : beforeSendDefault
     });
 }
 exports.initSentry = initSentry;
