@@ -35,11 +35,30 @@ module.exports = {
 		'no-undefined': 0,
 		'@typescript-eslint/indent': ['error', 'tab'],
 		camelcase: 'off',
-		'@typescript-eslint/camelcase': [
+		'@typescript-eslint/naming-convention': [
 			'error',
 			{
-				properties: 'always',
-				allow: ['^(S|M)[0-9]+_']
+				selector: 'default',
+				format: ['camelCase']
+			},
+			{
+				selector: 'variable',
+				format: ['camelCase', 'UPPER_CASE']
+			},
+			{
+				selector: 'parameter',
+				format: ['camelCase'],
+				leadingUnderscore: 'allow'
+			},
+			{
+				selector: 'memberLike',
+				modifiers: ['private'],
+				format: ['camelCase'],
+				leadingUnderscore: 'allow'
+			},
+			{
+				selector: 'typeLike',
+				format: ['PascalCase'],
 			}
 		],
 		'@typescript-eslint/explicit-member-accessibility': 2,

@@ -2,5 +2,5 @@
 node_modules
 src
 .*
-commitlint.config.js
+commitlint.config.cjs
 tsconfig.json
