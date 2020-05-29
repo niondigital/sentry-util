@@ -20,9 +20,9 @@ In your main.js
 ```
 import Sentry, { initSentry } from '@madebyheyday/sentry-util/browser';
 
-initSentry('production');
+initSentry({ environment: 'production' });
 // optionally provide a custom beforeSend function to filter captured errors
-initSentry('production', (error: Error): Error | null => error);
+initSentry({ environment: 'production', beforeSend: (error: Error): Error | null => error });
 
 // optionally use Sentry instance to allow setting extras, breadcrumbs, ...
 Sentry.setExtra('userAuthenticated', false);
@@ -60,7 +60,7 @@ import Sentry, { initSentry, captureAndLogError } from '@madebyheyday/sentry-uti
 // initialize sentry
 initSentry();
 // optionally provide a custom beforeSend function to filter captured errors
-initSentry((error: Error): Error | null => error);
+initSentry({ beforeSend: (error: Error): Error | null => error });
 
 // package exports Sentry instance to allow setting extras, breadcrumbs, ...
 Sentry.setExtra('userAuthenticated', false);
