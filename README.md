@@ -18,7 +18,7 @@ Set the following environment variables in Node or the browser (via webpack):
 In your main.js
 
 ```
-import Sentry, { initSentry } from '@madebyheyday/sentry-util/dist/browser';
+import Sentry, { initSentry } from '@madebyheyday/sentry-util/browser';
 
 initSentry('production');
 // optionally provide a custom beforeSend function to filter captured errors
@@ -32,7 +32,7 @@ Sentry.setExtra('userAuthenticated', false);
 Anywhere you wish to capture errors
 
 ```
-import Sentry, { captureAndLogError } from '@madebyheyday/sentry-util/dist/browser';
+import Sentry, { captureAndLogError } from '@madebyheyday/sentry-util/browser';
 
 // optionally use Sentry instance to allow setting extras, breadcrumbs, ...
 Sentry.addBreadcrumb({
@@ -55,7 +55,7 @@ try {
 Set `process.env.SENTRY_ENVIRONMENT` to the desired environment specifier to use when reporting errors.
 
 ```
-import Sentry, { initSentry, captureAndLogError } from '@madebyheyday/sentry-util/dist/node';
+import Sentry, { initSentry, captureAndLogError } from '@madebyheyday/sentry-util/node';
 
 // initialize sentry
 initSentry();
