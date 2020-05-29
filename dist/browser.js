@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.captureAndLogError = exports.initSentry = void 0;
 /**
  * Sentry Connector for Browser based environments (non-Node)
  */
