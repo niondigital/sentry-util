@@ -10,6 +10,10 @@
 		"@sentry/core": "5.15.5",
 		"@sentry/node": "5.15.5"
 	},
+	"exports": {
+		"./node": "./dist/node",
+		"./browser": "./dist/browser"
+	},
 	"devDependencies": {
 		"@commitlint/cli": "8.2.0",
 		"@commitlint/config-conventional": "8.2.0",
