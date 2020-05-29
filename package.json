@@ -11,8 +11,10 @@
 		"@sentry/node": "5.15.5"
 	},
 	"exports": {
-		"./node": "./dist/node.js",
-		"./browser": "./dist/browser.js"
+		".": {
+			"node": "./dist/node.js",
+			"default": "./dist/browser.js"
+		}
 	},
 	"devDependencies": {
 		"@commitlint/cli": "8.2.0",
