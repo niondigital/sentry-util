@@ -17,7 +17,7 @@
 		"default": "./dist/browser.js"
 	},
 	"devDependencies": {
-		"@madebyheyday/linting-base": "^1.1.9",
+		"@madebyheyday/linting-base": "^1.1.10",
 		"@types/node": "14.0.5",
 		"husky": "^4.2.5",
 		"typescript": "3.6.4"
