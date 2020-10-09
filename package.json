@@ -1,6 +1,6 @@
 {
 	"name": "@madebyheyday/sentry-util",
-	"version": "1.0.18",
+	"version": "1.0.19",
 	"license": "ISC",
 	"private": false,
 	"scripts": {
