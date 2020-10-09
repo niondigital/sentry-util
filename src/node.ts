@@ -12,7 +12,7 @@ export function captureAndLogError(error: Error): void {
 export function initSentry(config?: IInitSentryConfig): void {
 	// emit events only if sentry is enabled for the current environment:
 	const beforeSendDefault = (error: Error): Error | null =>
-		!process.env.SENTRY_ENABLED || ['false', '0', ''].includes(process.env.SENTRY_ENABLED.toLowerCase()) ? null : error;
+		!process.env.SENTRY_ENABLED || ['false', '0', ''].includes(String(process.env.SENTRY_ENABLED).toLowerCase()) ? null : error;
 
 	Sentry.init({
 		dsn: process.env.SENTRY_DSN || '',
