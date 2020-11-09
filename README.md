@@ -82,5 +82,5 @@ try {
 - Run `npm run build` 
 - Commit changes
 - Run `npm version major|minor|patch` (depending on the type of change that was made)
-- Execute `npm publish && git push && gitg push --tags`
+- Execute `npm publish && git push && git push --tags`
 
