@@ -79,6 +79,7 @@ try {
 
 ### Creating a release
 - Make changes and increase version number in package.json/package-lock.json
-- Commit changes 
+- Run `npm run build 
+- Commit changes ``
 - Execute `npm publish && git push && git push --tags`
 

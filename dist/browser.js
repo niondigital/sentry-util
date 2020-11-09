@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-exports.initSentry = exports.captureAndLogError = void 0;
 /**
  * Sentry Connector for Browser based environments (non-Node)
  */
@@ -13,7 +12,7 @@ exports.captureAndLogError = captureAndLogError;
 function initSentry(config) {
     // emit events only if sentry is enabled for the current environment:
     var beforeSendDefault = function (error) {
-        return !process.env.SENTRY_ENABLED || ['0', 'false', ''].includes(process.env.SENTRY_ENABLED.toLowerCase()) ? null : error;
+        return !process.env.SENTRY_ENABLED || ['0', 'false', ''].includes(String(process.env.SENTRY_ENABLED).toLowerCase()) ? null : error;
     };
     Sentry.init({
         dsn: process.env.SENTRY_DSN || '',
