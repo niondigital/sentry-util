@@ -59,11 +59,23 @@ import Sentry, { initSentry, captureAndLogError } from '@madebyheyday/sentry-uti
 
 // initialize sentry
 initSentry();
-// optionally provide a custom beforeSend function to filter captured errors
+// optionally provide custom options, e.g. a  beforeSend function to filter captured errors
 initSentry({ beforeSend: (error: Error): Error | null => error });
+
+
+// in browsers, the default global handler may be disabled where required
+initSentry({ 
+    integrations: [
+        new Sentry.Integrations.GlobalHandlers({
+            onerror: false,
+            onunhandledrejection: false
+        })
+    ]
+});
 
 // package exports Sentry instance to allow setting extras, breadcrumbs, ...
 Sentry.setExtra('userAuthenticated', false);
+
 
 
 // then use captureAndLogError() as an error handler for promises or try/catch blocks

@@ -2,7 +2,8 @@
  * Sentry Connector for Node.js environments (non-Browser)
  */
 import * as Sentry from '@sentry/node';
-import IInitSentryConfig from './types/IInitSentryConfig';
+import { NodeOptions } from "@sentry/node/dist/backend";
 export declare function captureAndLogError(error: Error): void;
-export declare function initSentry(config?: IInitSentryConfig): void;
+export declare const sentryEnabled: boolean;
+export declare function initSentry(options?: NodeOptions): void;
 export default Sentry;

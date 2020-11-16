@@ -2,26 +2,30 @@
  * Sentry Connector for Node.js environments (non-Browser)
  */
 import * as Sentry from '@sentry/node';
-import IInitSentryConfig from './types/IInitSentryConfig';
+import { NodeOptions } from '@sentry/node/dist/backend';
 
 export function captureAndLogError(error: Error): void {
 	console.error(error);
 	Sentry.captureException(error);
 }
 
-export function initSentry(config?: IInitSentryConfig): void {
+export const sentryEnabled: boolean = !(
+	!process.env.SENTRY_ENABLED || ['0', 'false', ''].includes(String(process.env.SENTRY_ENABLED).toLowerCase())
+);
+
+export function initSentry(options: NodeOptions = {}): void {
 	// emit events only if sentry is enabled for the current environment:
-	const beforeSendDefault = (error: Error): Error | null =>
-		!process.env.SENTRY_ENABLED || ['false', '0', ''].includes(String(process.env.SENTRY_ENABLED).toLowerCase()) ? null : error;
+	const beforeSendDefault = (error: Error): Error | null => (sentryEnabled ? null : error);
 
 	Sentry.init({
-		dsn: process.env.SENTRY_DSN || '',
-		environment: config && config.environment ? config.environment : process.env.SENTRY_ENVIRONMENT || '',
+		...options,
+		dsn: options.dsn || process.env.SENTRY_DSN || '',
+		environment: options.environment || process.env.SENTRY_ENVIRONMENT || '',
 		release:
-			config && config.release
-				? config.release
-				: process.env.SENTRY_RELEASE || `${process.env.npm_package_name}@${process.env.npm_package_version}`,
-		beforeSend: config && config.beforeSend ? config.beforeSend : beforeSendDefault
+			options.release ||
+			process.env.SENTRY_RELEASE ||
+			`${process.env.npm_package_name}@${process.env.npm_package_version}`,
+		beforeSend: options.beforeSend || beforeSendDefault
 	});
 }
 
