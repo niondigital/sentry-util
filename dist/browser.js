@@ -21,11 +21,20 @@ function captureAndLogError(error) {
 }
 exports.captureAndLogError = captureAndLogError;
 exports.sentryEnabled = !(!process.env.SENTRY_ENABLED || ['0', 'false', ''].includes(String(process.env.SENTRY_ENABLED).toLowerCase()));
+/**
+ * Emit events only if sentry is enabled for the current environment
+ * @param event
+ */
+function beforeSend(event) {
+    if (!exports.sentryEnabled) {
+        return null;
+    }
+    return event;
+}
+exports.beforeSend = beforeSend;
 function initSentry(options) {
     if (options === void 0) { options = {}; }
-    // emit events only if sentry is enabled for the current environment:
-    var beforeSendDefault = function (error) { return !exports.sentryEnabled ? null : error; };
-    Sentry.init(__assign(__assign({}, options), { dsn: options.dsn || process.env.SENTRY_DSN || '', environment: options.environment || process.env.SENTRY_ENVIRONMENT || '', release: options.release || process.env.SENTRY_RELEASE, beforeSend: options.beforeSend || beforeSendDefault }));
+    Sentry.init(__assign(__assign({}, options), { dsn: options.dsn || process.env.SENTRY_DSN || '', environment: options.environment || process.env.SENTRY_ENVIRONMENT || '', release: options.release || process.env.SENTRY_RELEASE, beforeSend: options.beforeSend || beforeSend }));
 }
 exports.initSentry = initSentry;
 exports["default"] = Sentry;
