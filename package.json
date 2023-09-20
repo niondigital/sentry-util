@@ -28,6 +28,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:niondigital/sentry-util.git"
+		"url": "git+ssh://git@github.com/niondigital/sentry-util.git"
 	}
 }
