@@ -1,4 +1,4 @@
-# @madebyheyday/sentry-util
+# @niondigital/sentry-util
 
 Provides basic sentry integration for Node and Browser based projects and includes Typescript type declarations.
 

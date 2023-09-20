@@ -2,8 +2,7 @@
  * Sentry Connector for Node.js environments (non-Browser)
  */
 import * as Sentry from '@sentry/node';
-import { NodeOptions } from '@sentry/node/dist/backend';
-import { Event } from '@sentry/node';
+import { Event, NodeOptions } from '@sentry/node';
 
 export { Event, EventHint } from '@sentry/node';
 

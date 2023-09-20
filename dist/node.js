@@ -10,7 +10,8 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initSentry = exports.beforeSend = exports.sentryEnabled = exports.captureAndLogError = void 0;
 /**
  * Sentry Connector for Node.js environments (non-Browser)
  */
@@ -36,7 +37,7 @@ function initSentry(options) {
     if (options === void 0) { options = {}; }
     Sentry.init(__assign(__assign({}, options), { dsn: options.dsn || process.env.SENTRY_DSN || '', environment: options.environment || process.env.SENTRY_ENVIRONMENT || '', release: options.release ||
             process.env.SENTRY_RELEASE ||
-            process.env.npm_package_name + "@" + process.env.npm_package_version, beforeSend: options.beforeSend || beforeSend }));
+            "".concat(process.env.npm_package_name, "@").concat(process.env.npm_package_version), beforeSend: options.beforeSend || beforeSend }));
 }
 exports.initSentry = initSentry;
-exports["default"] = Sentry;
+exports.default = Sentry;
