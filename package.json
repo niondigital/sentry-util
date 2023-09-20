@@ -28,6 +28,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:madebyheyday/sentry-util.git"
+		"url": "git@github.com:niondigital/sentry-util.git"
 	}
 }
