@@ -89,6 +89,10 @@ try {
 ```
 ## Package development
 
+### Local installation
+
+After initial `npm install` run `npx husky install` once to install git hooks.
+
 ### Creating a release
 - Make changes
 - Run `npm run build` 

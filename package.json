@@ -7,8 +7,7 @@
 		"node": ">=18.14.0"
 	},
 	"scripts": {
-		"build": "rm -rf dist/* && tsc -d --outDir dist/ src/*.ts",
-		"postinstall": "husky install"
+		"build": "rm -rf dist/* && tsc -d --outDir dist/ src/*.ts"
 	},
 	"dependencies": {
 		"@sentry/browser": "7.69.0",
